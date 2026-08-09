@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>OrbitKeep — Station Control Console</title>
+<style>
+:root{--bg:#04070f;--panel:#0a1322;--line:#12233c;--teal:#22d3ee;--amber:#fbbf24;--red:#f87171;--green:#4ade80;--text:#dbe7f5}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,sans-serif;overflow-x:hidden}
+#stars{position:fixed;inset:0;z-index:-1}
+nav{position:sticky;top:0;display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;padding:.8rem;background:rgba(4,7,15,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:[...]
+nav a{color:var(--teal);text-decoration:none;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+nav a:hover{color:#fff}
+header.hero{max-width:1000px;margin:3rem auto 2rem;text-align:center;padding:0 1rem}
+h1{font-size:clamp(2rem,6vw,3.6rem);letter-spacing:.08em}
+h1 span{color:var(--teal)}
+.tag{color:#8aa3c0;margin:.6rem 0 1.4rem}
+.badges span{display:inline-block;margin:.2rem;padding:.35rem .7rem;border:1px solid var(--line);border-radius:999px;font-size:.72rem;color:var(--amber)}
+.hero img{width:min(92%,860px);border:1px solid var(--line);border-radius:14px;margin-top:1.6rem;box-shadow:0 0 60px rgba(34,211,238,.18)}
+section{max-width:1000px;margin:3.5rem auto;padding:0 1rem}
+h2{color:var(--teal);letter-spacing:.15em;text-transform:uppercase;font-size:1rem;margin-bottom:1rem;border-left:3px solid var(--amber);padding-left:.6rem}
+.orbit{position:relative;width:230px;height:230px;margin:1.5rem auto}
+.planet{position:absolute;inset:32%;border-radius:50%;background:radial-gradient(circle at 30% 30%,#7dd3fc,#1d4ed8 60%,#0b1e4b);box-shadow:0 0 40px rgba(56,189,248,.35)}
+.ring{position:absolute;inset:0;border:1px dashed rgba(34,211,238,.45);border-radius:50%;animation:spin 14s linear infinite}
+.ring.r2{inset:14%;animation-duration:9s;animation-direction:reverse;border-color:rgba(251,191,36,.35)}
+.sat{position:absolute;top:-7px;left:calc(50% - 7px);width:14px;height:14px;border-radius:50%;background:var(--amber);box-shadow:0 0 14px var(--amber)}
+.sat.b{background:var(--teal);box-shadow:0 0 14px var(--teal)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tele{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem}
+.card h3{font-size:.75rem;letter-spacing:.15em;color:#8aa3c0;text-transform:uppercase;margin-bottom:.6rem}
+.bar{height:8px;background:#101c30;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:60%;background:linear-gradient(90deg,var(--teal),var(--green));transition:width 1.2s ease}
+.bar.warn i{background:linear-gradient(90deg,var(--amber),var(--red))}
+.val{font-size:1.4rem;margin:.4rem 0;color:#fff}
+#flare{display:none;margin-top:1rem;padding:.7rem 1rem;border:1px solid var(--red);border-radius:10px;color:var(--red);animation:blink 1s infinite}
+#flare.on{display:block}
+@keyframes blink{50%{opacity:.35}}
+.console{background:#02060c;border:1px solid var(--line);border-radius:12px;padding:1rem;font-family:Consolas,monospace;font-size:.85rem;min-height:230px}
+.ln{white-space:pre-wrap;margin:.15rem 0}
+.c-sys{color:var(--teal)}.c-evt{color:var(--green)}.c-warn{color:var(--amber)}.c-err{color:var(--red)}
+.cursor{display:inline-block;width:8px;height:14px;background:var(--teal);animation:blink 1s steps(1) infinite;vertical-align:middle}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.feat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.1rem;transition:transform .25s,border-color .25s}
+.feat:hover{transform:translateY(-4px);border-color:var(--teal)}
+.feat .ico{font-size:1.4rem}
+.feat h3{margin:.5rem 0 .3rem;color:#fff;font-size:.95rem}
+.feat p{font-size:.82rem;color:#9db4d0;line-height:1.5}
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.member{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1.2rem;text-align:center}
+.avatar{width:64px;height:64px;margin:0 auto .7rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;background:#10203a;border:1px solid var(--teal)}
+.member h3{color:#fff}
+.member p{font-size:.78rem;color:#9db4d0;margin-top:.4rem;line-height:1.5}
+pre{background:#02060c;border:1px solid var(--line);border-radius:10px;padding:1rem;overflow:auto;font-size:.8rem;color:var(--green)}
+footer{text-align:center;padding:2.5rem 1rem;color:#5c7699;font-size:.75rem;border-top:1px solid var(--line);margin-top:3rem}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas>
+<nav>
+<a href="#overview">Overview</a><a href="#telemetry">Telemetry</a><a href="#demo">Live Demo</a><a href="#features">Under the Hood</a><a href="#team">Crew</a><a href="#run">Run It</a>
+</nav>
+
+<header class="hero">
+<h1>ORBIT<span>KEEP</span></h1>
+<p class="tag">Station Control Console — a real-time C# space-station operations simulator · PRG2781 Group Project</p>
+<div class="badges"><span>C# / .NET</span><span>Console-only</span><span>OOP</span><span>Events & Delegates</span><span>Multithreading</span><span>Custom Exceptions</span></div>
+<img src="assets/concept.png" alt="OrbitKeep mission control concept art"/>
+<div class="orbit">
+  <div class="planet"></div>
+  <div class="ring"><div class="sat"></div></div>
+  <div class="ring r2"><div class="sat b"></div></div>
+</div>
+</header>
+
+<section id="overview">
+<h2>Mission Overview</h2>
+<p style="line-height:1.7;color:#9db4d0">OrbitKeep simulates life aboard a small orbital station: astronauts, modules, life-support and supply pods. A background monitor drains O₂ and power every 2 [...]
+</section>
+
+<section id="telemetry">
+<h2>Live Station Telemetry</h2>
+<div class="tele">
+ <div class="card"><h3>Oxygen Reserve</h3><div class="val" id="o2v">—</div><div class="bar" id="o2b"><i></i></div></div>
+ <div class="card"><h3>Power Grid</h3><div class="val" id="pwv">—</div><div class="bar" id="pwb"><i></i></div></div>
+ <div class="card"><h3>Crew Aboard</h3><div class="val">4</div><div class="bar"><i style="width:80%"></i></div></div>
+</div>
+<div id="flare">⚠ SOLAR FLARE DETECTED — AUTO POWER-SHEDDING ENGAGED</div>
+</section>
+
+<section id="demo">
+<h2>Console Demo (simulated)</h2>
+<div class="console" id="console"></div>
+</section>
+
+<section id="features">
+<h2>Under the Hood</h2>
+<div class="grid">
+ <div class="feat"><div class="ico">🧬</div><h3>Full OOP</h3><p>Abstract <code>Entity</code> base, <code>CrewMember → Astronaut</code> inheritance, polymorphic <code>GetStatus()</code>, encapsulat[...]
+ <div class="feat"><div class="ico">🔌</div><h3>Interfaces</h3><p><code>IMonitorable</code> & <code>IAlertable</code> decouple the life-support monitor from concrete module types.</p></div>
+ <div class="feat"><div class="ico">🛑</div><h3>Custom Exceptions</h3><p><code>InsufficientOxygenException</code>, <code>PowerRerouteException</code> — logical domain errors handled with try-catch[...]
+ <div class="feat"><div class="ico">📡</div><h3>Events & Delegates</h3><p><code>SolarFlareDetected</code>, <code>SupplyPodDocked</code>, <code>OxygenCritical</code> — a true publisher–subscriber[...]
+ <div class="feat"><div class="ico">🧵</div><h3>Multithreading</h3><p>Background <code>Task</code> drains O₂/power every 2s, independent of the menu; safe shutdown via <code>CancellationToken</cod[...]
+ <div class="feat"><div class="ico">🎁</div><h3>Bonus Features</h3><p>File save/load, timestamped logging to <code>station.log</code>, and LINQ reports of modules by lowest O₂.</p></div>
+ <div class="feat"><div class="ico">📏</div><h3>Domain Rule</h3><p>EVA allowed only with a buddy astronaut AND O₂ reserve ≥ 40% — otherwise the operation throws.</p></div>
+ <div class="feat"><div class="ico">⚡</div><h3>Custom Feature</h3><p>Auto power-shedding: on solar flare, non-essential modules power down and energy reroutes to life support.</p></div>
+</div>
+</section>
+
+<section id="team">
+<h2>The Crew</h2>
+<div class="team">
+ <div class="member"><div class="avatar">👩‍🚀</div><h3>Member 1</h3><p>Core OOP · Entities · CRUD · EVA rule · LINQ reports</p></div>
+ <div class="member"><div class="avatar">🧑🚀</div><h3>Member 2</h3><p>Events & delegates · Monitor thread · Solar-flare power-shedding</p></div>
+ <div class="member"><div class="avatar">👨🚀</div><h3>Member 3</h3><p>Custom exceptions · Seeded data · Logging & file I/O · README</p></div>
+</div>
+</section>
+
+<section id="run">
+<h2>Run It Locally</h2>
+<pre>git clone https://omendi-atlan.github.io/orbitKeep/
+cd orbitkeep
+dotnet run --project src/OrbitKeep.App</pre>
+</section>
+
+<footer>OrbitKeep · PRG2781 2026 · Belgium Campus · Built by the crew, for the crew 🛰️</footer>
+
+<script>
+/* Animated starfield */
+const c=document.getElementById('stars'),x=c.getContext('2d');let W,H,S=[];
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight;S=Array.from({length:170},()=>({x:Math.random()*W,y:Math.random()*H,z:Math.random()*1.6+.3}))}
+rs();addEventListener('resize',rs);
+(function loop(){x.clearRect(0,0,W,H);for(const s of S){s.y+=s.z*.25;if(s.y>H)s.y=0;x.globalAlpha=s.z/1.9;x.fillStyle='#fff';x.fillRect(s.x,s.y,s.z,s.z)}requestAnimationFrame(loop)})();
+
+/* Live telemetry — mirrors the C# background thread */
+let o2=87,pw=92;const $=id=>document.getElementById(id);
+setInterval(()=>{
+ o2=Math.max(38,o2-Math.random()*.9);pw=Math.max(30,pw-Math.random()*.7);
+ if(Math.random()<.10){$('flare').classList.add('on');pw=Math.max(30,pw-8);setTimeout(()=>$('flare').classList.remove('on'),4000)}
+ $('o2v').textContent=o2.toFixed(1)+'%';$('pwv').textContent=pw.toFixed(1)+'%';
+ $('o2b').firstElementChild.style.width=o2+'%';$('pwb').firstElementChild.style.width=pw+'%';
+ $('o2b').classList.toggle('warn',o2<55);$('pwb').classList.toggle('warn',pw<50);
+},2000);
+
+/* Typing console demo */
+const L=[['c-sys','> orbitkeep --start'],['c-sys','[SYS] Life-support monitor online — 2s interval'],['c-evt','[EVT] SupplyPodDocked: POD-7 attached to Bay 2'],['c-warn','[WARN] SolarFlareDetected �[...]
+const con=$('console');let li=0;
+function typeLine(){
+ if(li>=L.length){con.insertAdjacentHTML('beforeend','<span class="ln"><span class="cursor"></span></span>');return}
+ const [cls,txt]=L[li];const el=document.createElement('div');el.className='ln '+cls;con.appendChild(el);
+ let i=0;(function t(){el.textContent=txt.slice(0,++i);if(i<txt.length)setTimeout(t,18);else{li++;setTimeout(typeLine,500)}})();
+}
+typeLine();
+</script>
+</body>
+</html>
