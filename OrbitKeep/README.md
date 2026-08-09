@@ -36,7 +36,7 @@ Seed = GroupNumber + Student1 + Student2 + Student3
 ## Quick Start
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/orbitkeep.git
+git clone https://github.com/omendi-atlan/orbitkeep.git
 cd orbitkeep
 dotnet run --project src/OrbitKeep.App
 ```
