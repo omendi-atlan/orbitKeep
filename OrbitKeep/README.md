@@ -99,9 +99,6 @@ OrbitKeep/
 
 | Document | Purpose |
 |----------|---------|
-| [docs/project-charter.md](docs/project-charter.md) | Goals, scope, roles |
-| [docs/viva-cheat-sheet.md](docs/viva-cheat-sheet.md) | Quick answers for the viva |
-| [docs/demo-script.md](docs/demo-script.md) | Suggested live demo flow |
 | [docs/member-guides/](docs/member-guides/) | Per-member ownership & viva questions |
 | [index.html](index.html) | Visual presentation (telemetry, features, crew) |
 
