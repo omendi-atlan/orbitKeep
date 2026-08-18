@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProjectSpaceStation.Astronaut" Collapsed="true">
+    <Position X="1.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAEAAAABAAAAAAAAAAQAAQ=</HashCode>
+      <FileName>Astronaut.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectSpaceStation.CrewMember" Collapsed="true">
+    <Position X="1.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAEAAAAAAAAAAAAAAAAECAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CrewMember.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectSpaceStation.Entity" Collapsed="true">
+    <Position X="3.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAAAAAAAAABAAAQEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectSpaceStation.Logger" Collapsed="true">
+    <Position X="8.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Logger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectSpaceStation.LifeSupportSystem" Collapsed="true">
+    <Position X="3.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAIAAAAAAAEAACAAAIBAAAQAAABAAA=</HashCode>
+      <FileName>LifeSupportSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectSpaceStation.PowerManager" Collapsed="true">
+    <Position X="10.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PowerManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectSpaceStation.StationMonitor" Collapsed="true">
+    <Position X="8.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAEAAAACAAABAAAIAAAAAAAAAAAAAAIAAAAAABQAA=</HashCode>
+      <FileName>StationMonitor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectSpaceStation.SupplyPod" Collapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAQAAAEEAAACAAAAAAAAAACAAA=</HashCode>
+      <FileName>SupplyPod.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ProjectSpaceStation.IEntity" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IEntity.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ProjectSpaceStation.IPowerConsumer" Collapsed="true">
+    <Position X="10.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAIAAAAAAAAAAAAAAAAAAACAAAIAAAAAAQAAAAA=</HashCode>
+      <FileName>IPowerConsumer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="ProjectSpaceStation.AlertEventHandler" Collapsed="true">
+    <Position X="8.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>StationMonitor.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,7 @@
+C:\Users\steyl\OneDrive\Documents\2026 Second year modules\PMM 171\CompleteFinalSpaceStation\bin\Debug\CompleteFinalSpaceStation.exe.config
+C:\Users\steyl\OneDrive\Documents\2026 Second year modules\PMM 171\CompleteFinalSpaceStation\bin\Debug\CompleteFinalSpaceStation.exe
+C:\Users\steyl\OneDrive\Documents\2026 Second year modules\PMM 171\CompleteFinalSpaceStation\bin\Debug\CompleteFinalSpaceStation.pdb
+C:\Users\steyl\OneDrive\Documents\2026 Second year modules\PMM 171\CompleteFinalSpaceStation\obj\Debug\CompleteFinalSpaceStation.csproj.AssemblyReference.cache
+C:\Users\steyl\OneDrive\Documents\2026 Second year modules\PMM 171\CompleteFinalSpaceStation\obj\Debug\CompleteFinalSpaceStation.csproj.CoreCompileInputs.cache
+C:\Users\steyl\OneDrive\Documents\2026 Second year modules\PMM 171\CompleteFinalSpaceStation\obj\Debug\CompleteFinalSpaceStation.exe
+C:\Users\steyl\OneDrive\Documents\2026 Second year modules\PMM 171\CompleteFinalSpaceStation\obj\Debug\CompleteFinalSpaceStation.pdb

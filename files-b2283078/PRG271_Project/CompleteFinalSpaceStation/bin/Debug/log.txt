@@ -1,0 +1,63 @@
+System Booting...
+[ALERT] Critical O2 Warning! Current Level:19
+[ALERT] Critical O2 Warning! Current Level:17,5
+[ALERT] Critical O2 Warning! Current Level:16
+[ALERT] Critical O2 Warning! Current Level:14,5
+[ALERT] Critical O2 Warning! Current Level:13
+[ALERT] Critical O2 Warning! Current Level:11,5
+[ALERT] Critical O2 Warning! Current Level:10
+[ALERT] Critical O2 Warning! Current Level:8,5
+[ALERT] Critical O2 Warning! Current Level:7
+[ALERT] Critical O2 Warning! Current Level:5,5
+System Booting...
+[ALERT] Critical O2 Warning! Current Level:19
+[ALERT] Critical O2 Warning! Current Level:17,5
+[ALERT] Critical O2 Warning! Current Level:16
+[ALERT] Critical O2 Warning! Current Level:14,5
+[ALERT] Critical O2 Warning! Current Level:13
+[ALERT] Critical O2 Warning! Current Level:11,5
+[ALERT] Critical O2 Warning! Current Level:10
+[ALERT] Critical O2 Warning! Current Level:8,5
+[ALERT] Critical O2 Warning! Current Level:7
+[ALERT] Critical O2 Warning! Current Level:5,5
+[ALERT] Critical O2 Warning! Current Level:4
+[ALERT] Critical O2 Warning! Current Level:2,5
+[ALERT] Critical O2 Warning! Current Level:1
+[ALERT] Critical O2 Warning! Current Level:0
+[ALERT] Critical O2 Warning! Current Level:0
+[ALERT] Critical O2 Warning! Current Level:0
+[ALERT] Critical O2 Warning! Current Level:0
+System Booting...
+[ALERT] Critical O2 Warning! Current Level:19
+[ALERT] Critical O2 Warning! Current Level:17,5
+[ALERT] Critical O2 Warning! Current Level:16
+[ALERT] Critical O2 Warning! Current Level:14,5
+[ALERT] Critical O2 Warning! Current Level:13
+[ALERT] Critical O2 Warning! Current Level:11,5
+[ALERT] Critical O2 Warning! Current Level:10
+[ALERT] Critical O2 Warning! Current Level:8,5
+[ALERT] Critical O2 Warning! Current Level:7
+[ALERT] Critical O2 Warning! Current Level:5,5
+[ALERT] Critical O2 Warning! Current Level:4
+[ALERT] Critical O2 Warning! Current Level:2,5
+[ALERT] Critical O2 Warning! Current Level:1
+[ALERT] Critical O2 Warning! Current Level:0
+[ALERT] Critical O2 Warning! Current Level:0
+[ALERT] Critical O2 Warning! Current Level:0
+[ALERT] Critical O2 Warning! Current Level:0
+Supply pod docked.
+System Booting...
+[ALERT] Critical O2 Warning! Current Level:19
+[ALERT] Critical O2 Warning! Current Level:17,5
+Supply pod docked.
+System Booting...
+[ALERT] Critical O2 Warning! Current Level:19
+[ALERT] Critical O2 Warning! Current Level:17,5
+[ALERT] Critical O2 Warning! Current Level:16
+Supply pod docked.
+EVA started.
+EVA ended.
+Attempted to modify crew roster. Current count: 2
+Piet was removed from the station.
+EVA started.
+EVA Error: Dave is already outside!
