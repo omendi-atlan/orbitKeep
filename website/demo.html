@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Console Demonstration | Orbital Command Console</title>
+  <meta name="description" content="Live console demonstration and how-to-run" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-brand">
+      <span class="logo-icon">◈</span>
+      <span>ORBITAL COMMAND</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="system.html" class="nav-link">System</a>
+      <a href="requirements.html" class="nav-link">Technical</a>
+      <a href="code.html" class="nav-link">Code</a>
+      <a href="team.html" class="nav-link">Crew</a>
+      <a href="demo.html" class="nav-link active">Demo</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu" id="navToggle">☰</button>
+  </header>
+
+  <main>
+    <!-- Demo / Codespaces -->
+    <section id="demo" class="section">
+      <div class="section-header">
+        <h2>Live Console Demonstration</h2>
+        <p>Run the C# application in GitHub Codespaces or clone the sources</p>
+      </div>
+      <div class="demo-card">
+        <div class="demo-visual">
+          <div class="console-mock">
+            <div class="console-bar">
+              <span></span><span></span><span></span>
+              <em>CompleteFinalSpaceStation.exe</em>
+            </div>
+            <pre class="console-body">
+--- STATION MENU ---
+1. Check Status
+2. Dock Resupply
+3. Start EVA
+4. End EVA
+5. Exit System
+6. Hire New Astronaut (Create)
+7. Remove Astronaut (Remove)
+Select option: _
+            </pre>
+          </div>
+        </div>
+        <div class="demo-actions">
+          <h3>How to run</h3>
+          <ol>
+            <li>Open the repository in <strong>GitHub Codespaces</strong></li>
+            <li>Navigate to <code>CompleteFinalSpaceStation/</code></li>
+            <li>Build &amp; run with <code>dotnet run</code> or open the solution in VS</li>
+            <li>Interact via the menu-driven console</li>
+          </ol>
+          <a href="https://github.com/codespaces" target="_blank" rel="noopener" class="btn primary">
+            Open in GitHub Codespaces
+          </a>
+          <p class="note">
+            Link the <code>Program.cs</code> entry point from your own repo so assessors can launch the console instantly.
+          </p>
+          <a href="code/Program.cs" class="btn ghost">View Program.cs Source</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Orbital Command Console</strong><br />
+        PRG2781 · Belgium Campus · 2026
+      </div>
+      <div class="footer-meta">
+        Space Station Operations · Console-only C# · All technical requirements satisfied
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

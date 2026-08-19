@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Source Highlights | Orbital Command Console</title>
+  <meta name="description" content="Source highlights and code snippets" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-brand">
+      <span class="logo-icon">◈</span>
+      <span>ORBITAL COMMAND</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="system.html" class="nav-link">System</a>
+      <a href="requirements.html" class="nav-link">Technical</a>
+      <a href="code.html" class="nav-link active">Code</a>
+      <a href="team.html" class="nav-link">Crew</a>
+      <a href="demo.html" class="nav-link">Demo</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu" id="navToggle">☰</button>
+  </header>
+
+  <main>
+    <!-- Code Showcase -->
+    <section id="code" class="section">
+      <div class="section-header">
+        <h2>Source Highlights</h2>
+        <p>Key implementation excerpts from the delivered project</p>
+      </div>
+
+      <div class="code-tabs">
+        <button class="tab active" data-tab="program">Program.cs</button>
+        <button class="tab" data-tab="monitor">StationMonitor.cs</button>
+        <button class="tab" data-tab="entity">IEntity / Exception</button>
+      </div>
+
+      <div class="code-panel active" id="tab-program">
+        <pre class="code-block large"><code>// Main interactive loop — menu-driven console
+while (isRunning)
+{
+    Console.WriteLine("\n--- STATION MENU ---");
+    Console.WriteLine("1. Check Status");
+    Console.WriteLine("2. Dock Resupply");
+    Console.WriteLine("3. Start EVA");
+    Console.WriteLine("4. End EVA");
+    Console.WriteLine("5. Exit System");
+    Console.WriteLine("6. Hire New Astronaut (Create)");
+    Console.WriteLine("7. Remove Astronaut (Remove)");
+    // ... switch handles create / remove / EVA / status
+}
+
+// Event subscription
+monitor.CriticalOxygenAlert += powerManager.OnCriticalOxygenAlert;
+monitor.CriticalOxygenAlert += (msg, lvl) => Logger.Log(msg + lvl);
+monitor.Start(); // launches background thread</code></pre>
+      </div>
+      <div class="code-panel" id="tab-monitor">
+        <pre class="code-block large"><code>public class StationMonitor
+{
+    public event AlertEventHandler CriticalOxygenAlert;
+    public event EventHandler OxygenRestoredAlert;
+
+    private Thread _monitorThread;
+    private readonly object _lockObject = new object();
+
+    public void Start()
+    {
+        _monitorThread = new Thread(RunMonitor)
+        {
+            IsBackground = true,
+            Name = "StationMonitoringThread"
+        };
+        _monitorThread.Start();
+    }
+
+    private void RunMonitor()
+    {
+        while (_isRunning)
+        {
+            lock (_lockObject)
+            {
+                _lifeSupport.DrainOxygen(1.5);
+            }
+            if (_lifeSupport.StationOxygenReserve &lt; 20.0)
+                CriticalOxygenAlert?.Invoke(
+                    "[ALERT] Critical O2 Warning!",
+                    _lifeSupport.StationOxygenReserve);
+            Thread.Sleep(3000);
+        }
+    }
+}</code></pre>
+      </div>
+      <div class="code-panel" id="tab-entity">
+        <pre class="code-block large"><code>// Abstraction
+public interface IEntity
+{
+    string Id { get; }
+    string Name { get; }
+    string GetStatus();
+}
+
+// Custom domain exception
+public class SpaceStationException : Exception
+{
+    public SpaceStationException(string message)
+        : base(message) { }
+}
+
+// File I/O bonus
+public static class Logger
+{
+    public static void Log(string message)
+    {
+        try
+        {
+            File.AppendAllText("log.txt",
+                message + Environment.NewLine);
+        }
+        catch { /* fail gracefully */ }
+    }
+}</code></pre>
+      </div>
+
+      <div class="code-links">
+        <a href="code/Program.cs" download class="btn ghost">Download Program.cs</a>
+        <a href="code/StationMonitor.cs" download class="btn ghost">Download StationMonitor.cs</a>
+        <a href="code/" class="btn ghost">Browse All Sources</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <strong>Orbital Command Console</strong><br />
+        PRG2781 · Belgium Campus · 2026
+      </div>
+      <div class="footer-meta">
+        Space Station Operations · Console-only C# · All technical requirements satisfied
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

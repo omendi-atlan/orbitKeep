@@ -26,12 +26,12 @@
       <span>ORBITAL COMMAND</span>
     </div>
     <nav class="nav-links">
-      <a href="#home" class="nav-link active">Home</a>
-      <a href="#system" class="nav-link">System</a>
-      <a href="#requirements" class="nav-link">Technical</a>
-      <a href="#code" class="nav-link">Code</a>
-      <a href="#team" class="nav-link">Crew</a>
-      <a href="#demo" class="nav-link">Demo</a>
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="system.html" class="nav-link">System</a>
+      <a href="requirements.html" class="nav-link">Technical</a>
+      <a href="code.html" class="nav-link">Code</a>
+      <a href="team.html" class="nav-link">Crew</a>
+      <a href="demo.html" class="nav-link">Demo</a>
     </nav>
     <button class="nav-toggle" aria-label="Menu" id="navToggle">☰</button>
   </header>
@@ -48,8 +48,8 @@
           and event-driven alerts.
         </p>
         <div class="hero-actions">
-          <a href="#demo" class="btn primary">Launch Console Demo</a>
-          <a href="#requirements" class="btn ghost">View Technical Specs</a>
+          <a href="demo.html" class="btn primary">Launch Console Demo</a>
+          <a href="requirements.html" class="btn ghost">View Technical Specs</a>
         </div>
         <div class="hero-meta">
           <span>Domain: Space Station Operations</span>
@@ -62,274 +62,33 @@
       </div>
     </section>
 
-    <!-- System Overview -->
-    <section id="system" class="section">
+    <!-- Short links to sections -->
+    <section class="section">
       <div class="section-header">
-        <h2>System Overview</h2>
-        <p>Real-time operations, background processes and domain constraints</p>
+        <h2>Explore</h2>
+        <p>Quick links to system overview and project pages</p>
       </div>
       <div class="card-grid">
         <article class="card">
           <div class="card-icon">🛰</div>
-          <h3>Entities</h3>
-          <p>Life Support, Station Modules, Supply Pods, Astronauts — all implementing <code>IEntity</code> with unique IDs and status reporting.</p>
+          <h3><a href="system.html">System Overview</a></h3>
+          <p>Real-time operations, background processes and domain constraints.</p>
         </article>
         <article class="card">
           <div class="card-icon">⚡</div>
-          <h3>Power &amp; Oxygen</h3>
-          <p>PowerManager reacts to critical oxygen alerts. LifeSupport drains continuously via background thread; resupply restores levels and fires events.</p>
-        </article>
-        <article class="card">
-          <div class="card-icon">🧑‍🚀</div>
-          <h3>Crew Operations</h3>
-          <p>Create / remove astronauts, start &amp; end EVA with domain rule enforcement (custom <code>SpaceStationException</code> on illegal EVA states).</p>
+          <h3><a href="requirements.html">Technical Requirements</a></h3>
+          <p>Interfaces, events, threading, exceptions and bonus logging.</p>
         </article>
         <article class="card">
           <div class="card-icon">📡</div>
-          <h3>Background Monitor</h3>
-          <p>Independent monitoring thread drains O₂ every 3 s, raises <code>CriticalOxygenAlert</code> and <code>OxygenRestoredAlert</code> events safely under lock.</p>
+          <h3><a href="code.html">Source Highlights</a></h3>
+          <p>Key implementation excerpts and downloadable sources.</p>
         </article>
-      </div>
-    </section>
-
-    <!-- Technical Requirements -->
-    <section id="requirements" class="section alt">
-      <div class="section-header">
-        <h2>Technical Requirements Implemented</h2>
-        <p>Full OOP, interfaces, events, threading, exceptions &amp; bonus logging</p>
-      </div>
-
-      <div class="req-grid">
-        <div class="req-card">
-          <h3>1. OOP Principles</h3>
-          <ul>
-            <li><strong>Encapsulation</strong> — private fields + properties across entities</li>
-            <li><strong>Abstraction</strong> — <code>IEntity</code>, <code>IPowerConsumer</code></li>
-            <li><strong>Inheritance</strong> — <code>Astronaut</code> : <code>CrewMember</code> : <code>Entity</code></li>
-            <li><strong>Polymorphism</strong> — <code>GetStatus()</code> overridden per concrete type</li>
-          </ul>
-        </div>
-        <div class="req-card">
-          <h3>2. Interfaces</h3>
-          <ul>
-            <li><code>IEntity</code> — Id, Name, GetStatus()</li>
-            <li><code>IPowerConsumer</code> — power draw contract for modules</li>
-          </ul>
-          <pre class="code-block"><code>public interface IEntity {
-  string Id { get; }
-  string Name { get; }
-  string GetStatus();
-}</code></pre>
-        </div>
-        <div class="req-card">
-          <h3>3. Custom Exceptions</h3>
-          <p>Domain-specific <code>SpaceStationException</code> thrown on illegal EVA attempts.</p>
-          <pre class="code-block"><code>public class SpaceStationException
-  : Exception {
-  public SpaceStationException(string msg)
-    : base(msg) { }
-}</code></pre>
-        </div>
-        <div class="req-card">
-          <h3>4. Events &amp; Delegates</h3>
-          <ul>
-            <li><code>CriticalOxygenAlert</code> (custom delegate)</li>
-            <li><code>OxygenRestoredAlert</code> (EventHandler)</li>
-          </ul>
-          <pre class="code-block"><code>public delegate void AlertEventHandler(
-  string message, double currentLevel);
-
-public event AlertEventHandler
-  CriticalOxygenAlert;</code></pre>
-        </div>
-        <div class="req-card">
-          <h3>5. Multithreading</h3>
-          <p>Background <code>Thread</code> named <em>StationMonitoringThread</em> runs independently, uses <code>Monitor</code> lock for thread-safe oxygen drain.</p>
-        </div>
-        <div class="req-card">
-          <h3>6. Bonus — File Logging</h3>
-          <p><code>Logger</code> static class appends all major actions and alerts to <code>log.txt</code> with try/catch protection.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Code Showcase -->
-    <section id="code" class="section">
-      <div class="section-header">
-        <h2>Source Highlights</h2>
-        <p>Key implementation excerpts from the delivered project</p>
-      </div>
-
-      <div class="code-tabs">
-        <button class="tab active" data-tab="program">Program.cs</button>
-        <button class="tab" data-tab="monitor">StationMonitor.cs</button>
-        <button class="tab" data-tab="entity">IEntity / Exception</button>
-      </div>
-
-      <div class="code-panel active" id="tab-program">
-        <pre class="code-block large"><code>// Main interactive loop — menu-driven console
-while (isRunning)
-{
-    Console.WriteLine("\n--- STATION MENU ---");
-    Console.WriteLine("1. Check Status");
-    Console.WriteLine("2. Dock Resupply");
-    Console.WriteLine("3. Start EVA");
-    Console.WriteLine("4. End EVA");
-    Console.WriteLine("5. Exit System");
-    Console.WriteLine("6. Hire New Astronaut (Create)");
-    Console.WriteLine("7. Remove Astronaut (Remove)");
-    // ... switch handles create / remove / EVA / status
-}
-
-// Event subscription
-monitor.CriticalOxygenAlert += powerManager.OnCriticalOxygenAlert;
-monitor.CriticalOxygenAlert += (msg, lvl) => Logger.Log(msg + lvl);
-monitor.Start(); // launches background thread</code></pre>
-      </div>
-      <div class="code-panel" id="tab-monitor">
-        <pre class="code-block large"><code>public class StationMonitor
-{
-    public event AlertEventHandler CriticalOxygenAlert;
-    public event EventHandler OxygenRestoredAlert;
-
-    private Thread _monitorThread;
-    private readonly object _lockObject = new object();
-
-    public void Start()
-    {
-        _monitorThread = new Thread(RunMonitor)
-        {
-            IsBackground = true,
-            Name = "StationMonitoringThread"
-        };
-        _monitorThread.Start();
-    }
-
-    private void RunMonitor()
-    {
-        while (_isRunning)
-        {
-            lock (_lockObject)
-            {
-                _lifeSupport.DrainOxygen(1.5);
-            }
-            if (_lifeSupport.StationOxygenReserve &lt; 20.0)
-                CriticalOxygenAlert?.Invoke(
-                    "[ALERT] Critical O2 Warning!",
-                    _lifeSupport.StationOxygenReserve);
-            Thread.Sleep(3000);
-        }
-    }
-}</code></pre>
-      </div>
-      <div class="code-panel" id="tab-entity">
-        <pre class="code-block large"><code>// Abstraction
-public interface IEntity
-{
-    string Id { get; }
-    string Name { get; }
-    string GetStatus();
-}
-
-// Custom domain exception
-public class SpaceStationException : Exception
-{
-    public SpaceStationException(string message)
-        : base(message) { }
-}
-
-// File I/O bonus
-public static class Logger
-{
-    public static void Log(string message)
-    {
-        try
-        {
-            File.AppendAllText("log.txt",
-                message + Environment.NewLine);
-        }
-        catch { /* fail gracefully */ }
-    }
-}</code></pre>
-      </div>
-
-      <div class="code-links">
-        <a href="code/Program.cs" download class="btn ghost">Download Program.cs</a>
-        <a href="code/StationMonitor.cs" download class="btn ghost">Download StationMonitor.cs</a>
-        <a href="code/" class="btn ghost">Browse All Sources</a>
-      </div>
-    </section>
-
-    <!-- Team -->
-    <section id="team" class="section alt">
-      <div class="section-header">
-        <h2>Project Crew</h2>
-        <p>Group members who designed &amp; implemented Orbital Command Console</p>
-      </div>
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="avatar">LJ</div>
-          <h3>Louwrens Marthinus Jacobs</h3>
-          <p class="role">Student · Developer</p>
-        </div>
-        <div class="team-card">
-          <div class="avatar">MM</div>
-          <h3>Mongezi Mahlangu</h3>
-          <p class="role">Student · Developer</p>
-        </div>
-        <div class="team-card">
-          <div class="avatar">HS</div>
-          <h3>Hendrik Louis Steyl</h3>
-          <p class="role">Student · Developer</p>
-        </div>
-      </div>
-      <div class="team-photo">
-        <img src="assets/team.png" alt="Group roster screenshot" />
-      </div>
-    </section>
-
-    <!-- Demo / Codespaces -->
-    <section id="demo" class="section">
-      <div class="section-header">
-        <h2>Live Console Demonstration</h2>
-        <p>Run the C# application in GitHub Codespaces or clone the sources</p>
-      </div>
-      <div class="demo-card">
-        <div class="demo-visual">
-          <div class="console-mock">
-            <div class="console-bar">
-              <span></span><span></span><span></span>
-              <em>CompleteFinalSpaceStation.exe</em>
-            </div>
-            <pre class="console-body">
---- STATION MENU ---
-1. Check Status
-2. Dock Resupply
-3. Start EVA
-4. End EVA
-5. Exit System
-6. Hire New Astronaut (Create)
-7. Remove Astronaut (Remove)
-Select option: _
-            </pre>
-          </div>
-        </div>
-        <div class="demo-actions">
-          <h3>How to run</h3>
-          <ol>
-            <li>Open the repository in <strong>GitHub Codespaces</strong></li>
-            <li>Navigate to <code>CompleteFinalSpaceStation/</code></li>
-            <li>Build &amp; run with <code>dotnet run</code> or open the solution in VS</li>
-            <li>Interact via the menu-driven console</li>
-          </ol>
-          <a href="https://github.com/codespaces" target="_blank" rel="noopener" class="btn primary">
-            Open in GitHub Codespaces
-          </a>
-          <p class="note">
-            Link the <code>Program.cs</code> entry point from your own repo so assessors can launch the console instantly.
-          </p>
-          <a href="website/code/Program.cs" class="btn ghost">View Program.cs Source</a>
-        </div>
+        <article class="card">
+          <div class="card-icon">🧑‍🚀</div>
+          <h3><a href="team.html">Project Crew</a></h3>
+          <p>Meet the group members who implemented the project.</p>
+        </article>
       </div>
     </section>
   </main>
@@ -337,7 +96,8 @@ Select option: _
   <footer class="footer">
     <div class="footer-inner">
       <div>
-        <strong>Orbital Command Console</strong>
+        <strong>Orbital Command Console</strong><br />
+        PRG2781 · Belgium Campus · 2026
       </div>
       <div class="footer-meta">
         Space Station Operations · Console-only C# · All technical requirements satisfied
